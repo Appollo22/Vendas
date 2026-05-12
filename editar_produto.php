@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container mt-5">
         <h1 class="text-center">Editar Produto</h1>
         <form method="POST">
-            <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+            <input type="hidden" name="id" value="2">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome do Produto</label>
                 <input type="text" class="form-control" id="nome" name="nome" value="<?= $produto['nome'] ?>" required>
@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="number" step="0.01" class="form-control" id="preco_pacote" name="preco_pacote" value="<?= $produto['preco_pacote'] ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            <a href="index.html"><button type="button" class="btn btn-success">Menu</button></a>
         </form>
     </div>
 </body>

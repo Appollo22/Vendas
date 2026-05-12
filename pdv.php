@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["busca"])) {
     $produtos = buscarProduto('nome', $busca)->fetch_all(MYSQLI_ASSOC);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["vender"])) {
+/*if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["vender"])) {
     $id = $_POST["id"];
     $quantidadeVendida = $_POST["quantidadeVendida"];
 
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["vender"])) {
     $stmt->bind_param("ii", $quantidadeVendida, $id);
     $stmt->execute();
     echo "Produto vendido com sucesso!";
-}
+}*/
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["excluir"])) {
     $id = $_POST["id"];
@@ -34,18 +34,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["excluir"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ponto de Venda</title>
+    <title>Editor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Ponto de Venda</h1>
+        <h1 class="text-center">Editor</h1>
         <form method="POST">
             <div class="mb-3">
                 <label for="busca" class="form-label">Buscar Produto</label>
                 <input type="text" class="form-control" id="busca" name="busca" placeholder="Digite o nome ou código do produto" required>
             </div>
             <button type="submit" class="btn btn-primary">Buscar</button>
+            <a href="index.html"><button type="button" class="btn btn-success">Menu</button></a>
         </form>
         <hr>
         <?php if (!empty($produtos)): ?>
@@ -71,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["excluir"])) {
                         <form method="POST" style="display:inline-block;">
                             <input type="hidden" name="id" value="<?= $produto['id'] ?>">
                             <input type="number" name="quantidadeVendida" min="1" max="<?= $produto['quantidade'] ?>" placeholder="Qtd" required>
-                            <button type="submit" name="vender" class="btn btn-success btn-sm">Vender</button>
                         </form>
                         <form method="POST" style="display:inline-block;">
                             <input type="hidden" name="id" value="<?= $produto['id'] ?>">
